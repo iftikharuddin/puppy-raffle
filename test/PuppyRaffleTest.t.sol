@@ -244,9 +244,8 @@ contract PuppyRaffleTest is Test {
         console.log("Gas Cost of the 2nd 100 players", gasUsedSecond);
 
         assert(gasUsedFirst < gasUsedSecond);
-//        Logs:
-//        Gas cost of the first 100 Players 6252039
-//        Gas Cost of the 2nd 100 players 18067748
-
+        //        Logs:
+        //        Gas cost of the first 100 Players 6252039
+        //        Gas Cost of the 2nd 100 players 18067748
     }
 }

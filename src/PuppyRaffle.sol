@@ -137,6 +137,7 @@ contract PuppyRaffle is
     /// audit The contract uses a hash of on-chain data to generate randomness for selecting the winner. Be aware that on-chain randomness is
     /// predictable and may not be truly random. Consider using external oracles or Chainlink VRF for a more secure source of randomness.
     function selectWinner() external {
+        // @audit anyone can call this!!
         require(block.timestamp >= raffleStartTime + raffleDuration, "PuppyRaffle: Raffle not over");
         require(players.length >= 4, "PuppyRaffle: Need at least 4 players");
         uint256 winnerIndex =
@@ -168,6 +169,7 @@ contract PuppyRaffle is
     }
 
     /// @notice this function will withdraw the fees to the feeAddress
+    // @audit no access control here, anyone can withdraw the fees once raffle is done
     function withdrawFees() external {
         require(address(this).balance == uint256(totalFees), "PuppyRaffle: There are currently players active!");
         uint256 feesToWithdraw = totalFees;

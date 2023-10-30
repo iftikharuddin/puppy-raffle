@@ -5,19 +5,22 @@ import {Script} from "forge-std/Script.sol";
 import {PuppyRaffle} from "../src/PuppyRaffle.sol";
 
 contract DeployPuppyRaffle is Script {
-    uint256 entranceFee = 1e18;
+    uint256 entranceFee = 1e16;
     address feeAddress;
-    uint256 duration = 1 days;
+    uint256 duration = 30 minutes;
 
-    function run() public {
+    function run() public returns (PuppyRaffle) {
         feeAddress = msg.sender;
 
         vm.broadcast();
+        //        vm.startBroadcast();
         PuppyRaffle puppyRaffle =
         new PuppyRaffle( // @audit unused local variable puppyRaffle but this contract is OUT of Scope!
-            1e18,
+            1e16,
             feeAddress,
             duration
         );
+        //        vm.stopBroadcast();
+        return puppyRaffle;
     }
 }
