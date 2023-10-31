@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.6; // @audit why old version? The contract is written in Solidity version 0.7.6. It's usually a good idea to use the newest version of Solidity because it has security improvements and updates. But if you're using an older version that is known to be safe, it's not necessarily a security problem
 // @audit what bugs are common in this version?
-// floating pragma isn't cool
+// floating pragma isn't cool!
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
