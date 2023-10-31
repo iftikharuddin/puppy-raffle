@@ -105,6 +105,7 @@ contract PuppyRaffle is
 
     /// @param playerIndex the index of the player to refund. You can find it externally by calling `getActivePlayerIndex`
     /// @dev This function will allow there to be blank spots in the array
+    /// @audit potential reentrancy attacks
     function refund(uint256 playerIndex) public {
         address playerAddress = players[playerIndex];
         require(playerAddress == msg.sender, "PuppyRaffle: Only the player can refund");
@@ -125,7 +126,7 @@ contract PuppyRaffle is
                 return i;
             }
         }
-        return 0;
+        return 0; // @audit instead of returning zero how about return another const value? This might confuse user cuz zeroth index array do exists
     }
 
     /// @notice this function will select a winner and mint a puppy
